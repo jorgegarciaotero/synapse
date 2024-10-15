@@ -1,0 +1,18 @@
+{
+	"name": "05_subset_of_cols_ordered_by_num",
+	"properties": {
+		"description": "In 04 I set colate for nyc_taxi_discovery, so I dont have to use collate. Setting the numbers allows us to specify new col names. instead of LocationID I can use location_id",
+		"content": {
+			"query": "SELECT\n    *\nFROM\n    OPENROWSET(\n        BULK 'abfss://nyc-taxi-data@sasynapsejgo.dfs.core.windows.net/raw/taxi_zone.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW = TRUE,\n        FIELDTERMINATOR = ',',\n        ROWTERMINATOR = '\\n'\n    ) \n    WITH (\n        location_id  SMALLINT 1,\n        borough VARCHAR(255) 2,\n        zone VARCHAR(255) 3,\n        service_zone VARCHAR(255) 4\n    )\n    AS [result]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "nyc_taxi_discovery",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"name": "02_describe_table_columns",
+	"properties": {
+		"description": "USe sp_describe_first_result_set to describe table columns.",
+		"content": {
+			"query": "EXEC sp_describe_first_result_set N'SELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK ''abfss://nyc-taxi-data@sasynapsejgo.dfs.core.windows.net/raw/taxi_zone.csv'',\n        FORMAT = ''CSV'',\n        PARSER_VERSION = ''2.0'',\n        HEADER_ROW = TRUE,\n        FIELDTERMINATOR = '','',\n        ROWTERMINATOR = ''\\n''\n    ) AS [result]'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

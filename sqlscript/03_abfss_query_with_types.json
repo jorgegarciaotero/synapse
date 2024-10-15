@@ -1,0 +1,17 @@
+{
+	"name": "03_abfss_query_with_types",
+	"properties": {
+		"content": {
+			"query": "SELECT\n    *\nFROM\n    OPENROWSET(\n        BULK 'abfss://nyc-taxi-data@sasynapsejgo.dfs.core.windows.net/raw/taxi_zone.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW = TRUE,\n        FIELDTERMINATOR = ',',\n        ROWTERMINATOR = '\\n'\n    ) \n    WITH (\n        LocationID  SMALLINT ,\n        Borough VARCHAR(255)  COLLATE Latin1_General_100_CI_AS_SC_UTF8,\n        Zone VARCHAR(255)  COLLATE Latin1_General_100_CI_AS_SC_UTF8,\n        service_zone VARCHAR(255)  COLLATE Latin1_General_100_CI_AS_SC_UTF8\n    )\n    AS [result]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
