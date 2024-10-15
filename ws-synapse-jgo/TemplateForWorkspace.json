@@ -218,6 +218,7 @@
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
+				"description": "In data, creates an external \"data source\". This allows to query data in the way of 06",
 				"content": {
 					"query": "CREATE EXTERNAL DATA SOURCE nyc_taxi_data\nWITH (\n    LOCATION = 'abfss://nyc-taxi-data@sasynapsejgo.dfs.core.windows.net'\n)",
 					"metadata": {
@@ -230,6 +231,19 @@
 					"resultLimit": 5000
 				},
 				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"metadata": {
+						"language": "sql"
+					}
+				}
 			},
 			"dependsOn": []
 		}
