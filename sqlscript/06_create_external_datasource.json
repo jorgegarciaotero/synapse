@@ -1,6 +1,7 @@
 {
 	"name": "06_create_external_datasource",
 	"properties": {
+		"description": "In data, creates an external \"data source\". This allows to query data in the way of 06",
 		"content": {
 			"query": "CREATE EXTERNAL DATA SOURCE nyc_taxi_data\nWITH (\n    LOCATION = 'abfss://nyc-taxi-data@sasynapsejgo.dfs.core.windows.net'\n)",
 			"metadata": {
