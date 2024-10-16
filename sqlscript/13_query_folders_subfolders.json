@@ -1,0 +1,18 @@
+{
+	"name": "13_query_folders_subfolders",
+	"properties": {
+		"description": "Query folders and subfolders",
+		"content": {
+			"query": "USE nyc_taxi_discovery;\nSELECT \n    TOP 100 * \nFROM\n    OPENROWSET(\n        BULK 'raw/trip_data_green_csv/year=2020/month=01/green_tripdata_2020-01.csv',\n        DATA_SOURCE = 'nyc_taxi_data_raw',\n        FORMAT  = 'CSV',\n        PARSER_VERSION  = '2.0',\n        HEADER_ROW = TRUE\n    ) as result",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "nyc_taxi_discovery",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
