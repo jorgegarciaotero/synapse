@@ -1,0 +1,17 @@
+{
+	"name": "09_query_quoted_escaped_cols",
+	"properties": {
+		"content": {
+			"query": "USE nyc_taxi_discovery;\nSELECT * \nFROM OPENROWSET (\n    BULK 'raw/vendor_escaped.csv',\n    DATA_SOURCE = 'nyc_taxi_data',\n    FORMAT = 'CSV',\n    PARSER_VERSION = '2.0',\n    HEADER_ROW = TRUE,\n    ESCAPECHAR='\\\\'\n) as vendor;\n\n\nSELECT * \nFROM OPENROWSET (\n    BULK 'raw/vendor.csv',\n    DATA_SOURCE = 'nyc_taxi_data',\n    FORMAT = 'CSV',\n    PARSER_VERSION = '2.0',\n    HEADER_ROW = TRUE,\n    FIELDQUOTE='\"'\n) as vendor;\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "nyc_taxi_discovery",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
