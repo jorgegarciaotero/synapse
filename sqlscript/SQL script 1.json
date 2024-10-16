@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "USE nyc_taxi_discovery;\nSELECT \n    JSON_VALUE(jsonDoc, '$.payment_type') payment_type,\n    JSON_VALUE(jsonDoc, '$.payment_type_desc') payment_type_desc\nFROM OPENROWSET (\n    BULK 'raw/payment_type.json',\n    DATA_SOURCE = 'nyc_taxi_data',\n    FORMAT = 'CSV',\n    PARSER_VERSION = '2.0',\n    HEADER_ROW = TRUE,\n    FIELDTERMINATOR = '0x0b',\n    FIELDQUOTE='0x0b',\n    ROWTERMINATOR='0x0a'\n) WITH(\n    jsonDoc NVARCHAR(MAX)\n) as payment_type\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
