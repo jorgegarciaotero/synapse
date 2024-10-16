@@ -2,7 +2,7 @@
 	"name": "08_explore_calendar",
 	"properties": {
 		"content": {
-			"query": "USE nyc_taxi_discovery;\n\nSELECT * \nFROM OPENROWSET (\n    BULK 'raw/calendar.csv',\n    DATA_SOURCE = 'nyc_taxi_data',\n    FORMAT = 'CSV',\n    PARSER_VERSION = '2.0',\n    HEADER_ROW = TRUE\n) as calendar_data",
+			"query": "USE nyc_taxi_discovery;\n\nSELECT * \nFROM OPENROWSET (\n    BULK 'raw/calendar.csv',\n    DATA_SOURCE = 'nyc_taxi_data',\n    FORMAT = 'CSV',\n    PARSER_VERSION = '2.0',\n    HEADER_ROW = TRUE\n) as calendar_data;\n\n\n\nEXEC sp_describe_first_result_set N'SELECT * \nFROM OPENROWSET (\n    BULK ''raw/calendar.csv'',\n    DATA_SOURCE = ''nyc_taxi_data'',\n    FORMAT = ''CSV'',\n    PARSER_VERSION = ''2.0'',\n    HEADER_ROW = TRUE\n) as calendar_data'\n\n\nSELECT * \nFROM OPENROWSET (\n    BULK 'raw/calendar.csv',\n    DATA_SOURCE = 'nyc_taxi_data',\n    FORMAT = 'CSV',\n    PARSER_VERSION = '2.0',\n    HEADER_ROW = TRUE\n) \nWITH (\n    date_key INT,\n    date DATE,\n    year SMALLINT,\n    month TINYINT,\n    day TINYINT,\n    day_name VARCHAR(10),\n    day_of_year SMALLINT,\n    week_of_month TINYINT,\n    week_of_year TINYINT,\n    month_name VARCHAR(10),\n    year_month INT,\n    year_week INT\n) AS calendar_data;\n",
 			"metadata": {
 				"language": "sql"
 			},
